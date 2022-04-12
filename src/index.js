@@ -5,12 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import DestSelection from './components/DestSelection.jsx';
+import SelectCar from './components/SelectCar.jsx';
+import SelectSeat from './components/SelectSeat.jsx';
+import PopUpBook from './components/PopUpBook.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
           <Route path="/Destination" element={<DestSelection/>}></Route>
+          <Route path="/CarSelection" element={<SelectCar/>}></Route>
+          <Route path="/SeatSelection" element={<SelectSeat/>}></Route>
+          <Route path="/PopUp" element = {<PopUpBook/>}></Route>
           <Route path="/" element={<App/>}></Route>
       </Routes>
     </Router>

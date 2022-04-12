@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, DatePicker, TimePicker, Button, Input } from 'antd';
+import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import '../styles/DestStyles.css';
 
 
@@ -20,7 +21,6 @@ class DestSelection extends React.Component{
                         message: 'Please select time!',
                     }
                 ]
-
             },
             formItemLayout:{
                 labelCol: {
@@ -56,47 +56,36 @@ class DestSelection extends React.Component{
     };
     render(){
         return(
-            <Form name="time_related_controls" {...this.state.formItemLayout} onFinish={this.onFinish}>
+            <div>
+                <Form name="time_related_controls" id="form_element" {...this.state.formItemLayout} onFinish={this.onFinish}>
                 <Form.Item
                     className="name_and_number_inputs"
                     name="first_name"
-                    label="Name"
+                    label="Departure"
                     rules={[
                     {
                         required: true,
-                        message: 'Please input your first first name',
+                        message: 'Please input your departure location',
                     },
                     ]}
                 >
-                    <Input placeholder="Please input your first name" />
+                    <Input placeholder="Please input your departure location" />
                 </Form.Item>
                 <Form.Item
                  className="name_and_number_inputs"
                  name="last_name"
-                 label="Last Name"
+                 label="Arrival"
                  rules={[
                  {
                      required: true,
-                     message: 'Please input your last name',
+                     message: 'Please input your arrival location',
                  },
                  ]}
              >
-                 <Input placeholder="Please input your last name" />
+                 <Input placeholder="Please input your arrival location" />
              </Form.Item>
 
-             <Form.Item
-                 
-                 className="name_and_number_inputs"
-                 label="Number"
-                 rules={[
-                 {
-                     required: true,
-                     message: 'Please input your number',
-                 },
-                 ]}
-             >
-                 <Input placeholder="Please input your last number" />
-             </Form.Item>
+             
 
                 <Form.Item 
                 className="name_and_number_inputs"
@@ -106,7 +95,6 @@ class DestSelection extends React.Component{
                     <DatePicker />
                 </Form.Item>
                
-                
                 <Form.Item 
                 className="name_and_number_inputs"
                 name="time" 
@@ -114,8 +102,6 @@ class DestSelection extends React.Component{
                 {...this.state.config}>
                     <TimePicker />
                 </Form.Item>
-                
-                
                 
                 <Form.Item
                     wrapperCol={{
@@ -129,14 +115,20 @@ class DestSelection extends React.Component{
                     },
                     }}
                 >
-                    <Button 
-                    className="check_button"
-                    type="primary" 
-                    htmlType="submit">
-                    Check for Seats
-                    </Button>
+                    <Link to="/CarSelection">
+                        <Button 
+                        className="check_button"
+                        type="primary" 
+                        htmlType="submit">
+                        Check for Seats
+                        </Button>
+                    
+                    </Link>
+                   
+                   
                 </Form.Item>
             </Form>
+            </div>
         );
     }
 }

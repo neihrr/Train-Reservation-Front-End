@@ -7,6 +7,11 @@
 .check_button{
     margin-left:17.5%;
     margin-right: auto;
-    width:13%;
+    width:200px;
 
+}
+
+#form_element{
+    margin-top: 5%;
+    margin-right: 5%;
 }

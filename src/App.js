@@ -2,11 +2,11 @@ import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import './Login'
-import './SelectCar'
-import './SelectSeat'
+import './components/SelectCar'
+import './components/SelectSeat'
 import Login from './Login';
-import SelectCar from './SelectCar';
-import SelectSeat from './SelectSeat';
+import SelectCar from './components/SelectCar.jsx';
+import SelectSeat from './components/SelectSeat';
 import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 
 
