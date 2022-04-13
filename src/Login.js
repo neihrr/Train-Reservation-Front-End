@@ -3,36 +3,21 @@ import Userfront from "@userfront/core";
 import { Form, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 import './styles/loginStyles.css';
-import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+import {BrowserRouter as Router,Routes, Route, Link, useLocation,
+    useNavigate,
+    useParams} from 'react-router-dom';
 import axios from 'axios';
 import logo from './images/for_logo2.png';
 import jwt_decode from 'jwt-decode';
 import { getKeyThenIncreaseKey } from 'antd/lib/message';
 import { ExclamationOutlined} from '@ant-design/icons';
 
-async function postData(url = '', data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: 'POST', // GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors,cors, same-origin
-      cache: 'no-cache', // default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include,same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, follow, error
-      referrerPolicy: 'no-referrer', // no-referrer,no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
-  }
-  
 async function send(u,p){
-    const response = await postData('http://localhost:3001/auth/login',
-    {username:u,
-    password:p});
-    console.log(response);
+    const response = await axios.post('http://localhost:3001/auth/login',
+    {   
+        username:u,
+        password:p
+    });
     return response;
 }
 
@@ -40,23 +25,31 @@ class Login extends React.Component{
     constructor(props){
         super(props);
         this.user={};
+        this.navigation = this.props.navigation;
         this.state = {
             username : "",
             password : "",
-            role:""
+            role:"",
         };
     }
-   
 
     async onFinish(){
+        let path = "/";
+
         const res =  await send(this.state.username,this.state.password);
-        localStorage.setItem('access_token', res.access_token);
-        console.log(res.access_token);
-        this.user = jwt_decode(res.access_token);
-        localStorage.setItem('user_name',this.user.username);
-   
-        console.log(this.user);
- 
+        localStorage.setItem('access_token', res.data.access_token);
+
+        console.log(res.data.access_token);
+
+        this.user = jwt_decode(res.data.access_token);
+
+        switch(this.user.role)
+        {
+            case "admin" : {path = "/AdminPanel"; break;}
+            case "user" : {path = "/Destination"; break;}
+        }
+
+        this.navigation(path)
     }
 
     onFinishFailed(errorInfo){
@@ -70,18 +63,14 @@ class Login extends React.Component{
     }
 
     handlePasswordChange(e){
-        //e.target input field'ı temsil ediyor
-        //e.target.value input field'ın içerisine girilen değeri temsil ediyor
         this.setState({
             password:e.target.value
-        }
-        )
+        });
     }
 
 
     render(){
    
-       
         return(
             <div>
                 <div>
@@ -119,19 +108,10 @@ class Login extends React.Component{
                         
                         wrapperCol={{ offset: 8, span: 16 }}>
                             
-                        
-                        <Link to='/AdminPanel'>
                             <Button type="primary" htmlType="submit" onClick = {()=>this.onFinish()}>  
-                            Submit
+                                Submit
                             </Button>
-                        </Link> 
-
-                           
-                           
-                     
-                               
-                                                 
-    
+                                        
                         </Form.Item>
                     </Form>
 
@@ -142,4 +122,8 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default function(props) {
+    const navigation = useNavigate();
+  
+    return <Login {...props} navigation={navigation} />;
+  }

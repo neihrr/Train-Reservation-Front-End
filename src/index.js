@@ -10,6 +10,7 @@ import SelectSeat from './components/SelectSeat.jsx';
 import PopUpBook from './components/PopUpBook.jsx';
 import AdminPanel from './components/AdminPanel.jsx';
 import PurchaseSuccess from './components/PurchaseSuccess.jsx';
+import Cancellation from './components/Cancellation.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route path="/PopUp" element = {<PopUpBook/>}></Route>
           <Route path="/AdminPanel" element = {<AdminPanel/>}></Route>
           <Route path="/PurchaseSuccess" element = {<PurchaseSuccess/>}></Route>
+          <Route path="/Cancellation" element = {<Cancellation/>}></Route>
           <Route path="/" element={<App/>}></Route>
       </Routes>
     </Router>
