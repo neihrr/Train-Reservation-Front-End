@@ -16,6 +16,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
+
           <Route path="/Destination" element={<DestSelection/>}></Route>
           <Route path="/CarSelection" element={<SelectCar/>}></Route>
           <Route path="/SeatSelection" element={<SelectSeat/>}></Route>
@@ -24,7 +25,9 @@ ReactDOM.render(
           <Route path="/PurchaseSuccess" element = {<PurchaseSuccess/>}></Route>
           <Route path="/Cancellation" element = {<Cancellation/>}></Route>
           <Route path="/" element={<App/>}></Route>
+        
       </Routes>
+
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

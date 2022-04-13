@@ -8,9 +8,8 @@ class DestSelection extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            first_name:"",
-            last_name:"",
-            number:"",
+            departure:"",
+            arrival:"",
             date:"",
             time:"",
             config:{
@@ -42,25 +41,43 @@ class DestSelection extends React.Component{
             }
         };
     }
-
+    componentDidUpdate(){
+        console.log(this.state.departure);
+        console.log(this.state.arrival);
     
-    
+    }
 
     onFinish(values){
-     
         console.log('Success:', values);
-    };
+    }
 
     onFinishFailed(errorInfo){
         console.log('Failed:', errorInfo);
-    };
+    }
+
+    handleArrival(e){
+        this.setState({arrival:e.target.value});
+    }
+    handleDeparture(e){
+        this.setState({departure:e.target.value});
+    }
+    handleTime(e){
+        this.setState({time:e.target.value});
+        localStorage.setItem('time',e.target.value);
+    }
+    handleDate(e){
+        this.setState({date:e.target.value});
+        localStorage.setItem('date',e.target.value);
+    }
+    
+
     render(){
         return(
             <div>
-                <Form name="time_related_controls" id="form_element" {...this.state.formItemLayout} onFinish={this.onFinish}>
+                <Form name="time_related_controls" id="form_element" {...this.state.formItemLayout} onFinish={(values)=>this.onFinish(values)}>
                 <Form.Item
                     className="name_and_number_inputs"
-                    name="first_name"
+                    name="departure"
                     label="Departure"
                     rules={[
                     {
@@ -69,39 +86,49 @@ class DestSelection extends React.Component{
                     },
                     ]}
                 >
-                    <Input placeholder="Please input your departure location" />
+                    <Input placeholder="Please input your departure location" onChange={(e)=>this.handleDeparture(e)}/>
                 </Form.Item>
                 <Form.Item
                  className="name_and_number_inputs"
-                 name="last_name"
+                 name="arrival"
                  label="Arrival"
                  rules={[
                  {
-                     required: true,
-                     message: 'Please input your arrival location',
+                    required: true,
+                    message: 'Please input your arrival location',
                  },
                  ]}
              >
-                 <Input placeholder="Please input your arrival location" />
+                 <Input placeholder="Please input your arrival location" onChange={(e)=>this.handleArrival(e)}/>
+             </Form.Item>
+               
+             <Form.Item
+                 className="name_and_number_inputs"
+                 name="date"
+                 label="Date"
+                 rules={[
+                 {
+                     required: true,
+                     message: 'yyyy-mm-dd',
+                 },
+                 ]}
+             >
+                <Input placeholder="yyyy-mm-dd" onChange={(e)=>this.handleDate(e)}/>
              </Form.Item>
 
-             
-
-                <Form.Item 
-                className="name_and_number_inputs"
-                name="date" 
-                label="DatePicker"
-                 {...this.state.config}>
-                    <DatePicker />
-                </Form.Item>
-               
-                <Form.Item 
-                className="name_and_number_inputs"
-                name="time" 
-                label="TimePicker" 
-                {...this.state.config}>
-                    <TimePicker />
-                </Form.Item>
+             <Form.Item
+                 className="name_and_number_inputs"
+                 name="time"
+                 label="Time"
+                 rules={[
+                 {
+                     required: true,
+                     message: 'hh:mm',
+                 },
+                 ]}
+             >
+                 <Input placeholder="hh:mm" onChange={(e)=>this.handleTime(e)}/>
+             </Form.Item>
                 
                 <Form.Item
                     wrapperCol={{

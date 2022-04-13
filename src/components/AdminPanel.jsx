@@ -2,18 +2,33 @@ import React from 'react';
 import '../styles/AdminPanel.css';
 
 import { Typography, Divider, Button } from 'antd';
+import axios from 'axios';
 const { Title, Paragraph, Text, Link } = Typography;
+
+
 class AdminPanel extends React.Component {
     constructor(props){
         super(props);
-        this.data = [{fname:"nehir",lname:"cesmeci",dep:"buffalo",car:"B",seat:20,cost:80},
-        {fname:"dou",lname:"sonmez",dep:"istanbul",car:"c",seat:19,cost:80}];
+        this.data = null;
         this.state = {
             items: null,
             revenue:0
         }
         this.returnCustomers=this.returnCustomers.bind(this);
+        
     }
+
+    getReservations(){
+        axios.get("http://localhost:3001/reservation/").then(
+            res=>{
+                const reservations = res.data;
+                this.setState({data:reservations});
+                return reservations;
+            }
+        )
+
+    }
+
     returnCustomers (){
         const arr = [];
         const ret = this.data.forEach((customer)=>{arr.push(<Paragraph className="customerDisplay">

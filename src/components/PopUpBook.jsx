@@ -100,9 +100,6 @@ import {
                 </Form.Item>
         );
 
-       
-       
-
         return(
             <Form className="form_parent" {...this.state.formItemLayout}
            
@@ -150,7 +147,7 @@ import {
                 <Checkbox className="check_box"  onClick ={(e) => this.onChange(e)}>I agree to pay ${this.state.cost} for this purchase.</Checkbox>
                 <br/>
                 {
-                    this.state.isChecked ? 
+                this.state.isChecked ? 
                     <Link to='/PurchaseSuccess'>
                         {localStorage.setItem('cost',this.state.cost)}
                         <Button className="purchase_button" type="primary" onClick ={(e) => this.handleButtonClick(e)}>BOOK ${this.state.cost}</Button>
@@ -160,7 +157,6 @@ import {
                     :
                     <Button className="notchecked_purchase_button" type="primary" onClick ={(e) => this.handleButtonClick(e)} disabled>BOOK ${this.state.cost}</Button>
                 }
-                
         </Form>
 
         );
