@@ -13,12 +13,12 @@ class SelectCar extends React.Component{
                 background: '#0092ff', 
                 padding: '8px 0',
             },
-            buttonValues:['A','B','C','D','E','F','G','H','J','K','L']
+            carValues:['A','B','C','D','E','F','G','H','J','K','L']
         };
     }
 
     handleChange = (index) =>{
-        localStorage.setItem('buttonValue',this.state.buttonValues[index]);
+        localStorage.setItem('carValue',this.state.carValues[index]);
     }
     render(){
     

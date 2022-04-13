@@ -9,10 +9,11 @@ const { Title, Paragraph, Text, Link } = Typography;
 class AdminPanel extends React.Component {
     constructor(props){
         super(props);
-        this.data = null;
+     
         this.state = {
             items: null,
-            revenue:0
+            revenue:0,
+            data:null
         }
         this.returnCustomers=this.returnCustomers.bind(this);
         

@@ -57,9 +57,11 @@ class DestSelection extends React.Component{
 
     handleArrival(e){
         this.setState({arrival:e.target.value});
+        localStorage.setItem('arrival',e.target.value);
     }
     handleDeparture(e){
         this.setState({departure:e.target.value});
+        localStorage.setItem('departure',e.target.value);
     }
     handleTime(e){
         this.setState({time:e.target.value});

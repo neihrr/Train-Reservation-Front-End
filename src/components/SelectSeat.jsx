@@ -22,7 +22,7 @@ class SelectSeat extends React.Component{
     }
     render(){
       
-        const carValue = localStorage.getItem('buttonValue');
+        const carValue = localStorage.getItem('carValue');
         
         
         return(
