@@ -1,0 +1,23 @@
+.check_image{
+    width: 100px;
+    height: 100px;
+}
+.caption{
+    margin-top:10%;
+    text-align: center;
+}
+.purchase_message{
+    text-align: center;
+    margin-left: 20px;
+}
+.cancel{
+    margin-left:40%;
+}
+.cont{
+    margin-right: auto;
+    margin-left:5%;
+}
+.sign_out{
+    margin-top: 40px;
+    margin-left:47%;
+}

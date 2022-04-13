@@ -6,6 +6,9 @@ import './styles/loginStyles.css';
 import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import logo from './images/for_logo2.png';
+import jwt_decode from 'jwt-decode';
+import { getKeyThenIncreaseKey } from 'antd/lib/message';
+import { ExclamationOutlined} from '@ant-design/icons';
 
 async function postData(url = '', data = {}) {
     // Default options are marked with *
@@ -36,17 +39,24 @@ async function send(u,p){
 class Login extends React.Component{
     constructor(props){
         super(props);
+        this.user={};
         this.state = {
             username : "",
             password : "",
+            role:""
         };
     }
+   
 
     async onFinish(){
         const res =  await send(this.state.username,this.state.password);
         localStorage.setItem('access_token', res.access_token);
         console.log(res.access_token);
-        return res;
+        this.user = jwt_decode(res.access_token);
+        localStorage.setItem('user_name',this.user.username);
+   
+        console.log(this.user);
+ 
     }
 
     onFinishFailed(errorInfo){
@@ -68,7 +78,10 @@ class Login extends React.Component{
         )
     }
 
+
     render(){
+   
+       
         return(
             <div>
                 <div>
@@ -81,7 +94,6 @@ class Login extends React.Component{
                         labelCol={{ span: 8 }}
                         wrapperCol={{ span: 16 }}
                         initialValues={{ remember: true }}
-                        onFinish={async ()=>await this.onFinish()}
                         onFinishFailed={()=>this.onFinishFailed()}
                         autoComplete="off"
                         >
@@ -106,15 +118,20 @@ class Login extends React.Component{
                         <Form.Item 
                         
                         wrapperCol={{ offset: 8, span: 16 }}>
-                           
-                            <Link to='/Destination'>
-                                <Button type="primary" htmlType="submit">
-                                Submit
-                                </Button>
-                            </Link>
+                            
+                        
+                        <Link to='/AdminPanel'>
+                            <Button type="primary" htmlType="submit" onClick = {()=>this.onFinish()}>  
+                            Submit
+                            </Button>
+                        </Link> 
 
                            
-                            
+                           
+                     
+                               
+                                                 
+    
                         </Form.Item>
                     </Form>
 

@@ -8,6 +8,8 @@ import DestSelection from './components/DestSelection.jsx';
 import SelectCar from './components/SelectCar.jsx';
 import SelectSeat from './components/SelectSeat.jsx';
 import PopUpBook from './components/PopUpBook.jsx';
+import AdminPanel from './components/AdminPanel.jsx';
+import PurchaseSuccess from './components/PurchaseSuccess.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +19,8 @@ ReactDOM.render(
           <Route path="/CarSelection" element={<SelectCar/>}></Route>
           <Route path="/SeatSelection" element={<SelectSeat/>}></Route>
           <Route path="/PopUp" element = {<PopUpBook/>}></Route>
+          <Route path="/AdminPanel" element = {<AdminPanel/>}></Route>
+          <Route path="/PurchaseSuccess" element = {<PurchaseSuccess/>}></Route>
           <Route path="/" element={<App/>}></Route>
       </Routes>
     </Router>
