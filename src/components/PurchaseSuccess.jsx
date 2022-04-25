@@ -16,7 +16,7 @@ class PurchaseSuccess extends React.Component{
             <Link to="/Cancellation">
                 <Button className="cancel" type="primary">Cancel</Button>
             </Link>
-            <Link to="/CarSelection">
+            <Link to="/Destination">
                 <Button className="cont" type="primary">Continue to Purchase</Button>
             </Link>
             <br/>

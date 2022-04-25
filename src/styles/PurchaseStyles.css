@@ -11,13 +11,16 @@
     margin-left: 20px;
 }
 .cancel{
-    margin-left:40%;
+    margin-left:38%;
+    width:170px;
 }
 .cont{
     margin-right: auto;
     margin-left:5%;
+    width:170px;
 }
 .sign_out{
-    margin-top: 40px;
-    margin-left:47%;
+    margin-top: 38px;
+    margin-left:45%;
+    width:170px;
 }

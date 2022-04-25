@@ -17,7 +17,7 @@ async function send(u,p){
     {   
         username:u,
         password:p
-    });
+    }).catch(e => alert("Login failed"));
     return response;
 }
 
@@ -33,10 +33,14 @@ class Login extends React.Component{
         };
     }
 
+    
+
     async onFinish(){
         let path = "/";
+  
 
         const res =  await send(this.state.username,this.state.password);
+        
         localStorage.setItem('access_token', res.data.access_token);
 
         console.log(res.data.access_token);
@@ -47,6 +51,7 @@ class Login extends React.Component{
         {
             case "admin" : {path = "/AdminPanel"; break;}
             case "user" : {path = "/Destination"; break;}
+   
         }
 
         this.navigation(path)
@@ -109,7 +114,7 @@ class Login extends React.Component{
                         wrapperCol={{ offset: 8, span: 16 }}>
                             
                             <Button type="primary" htmlType="submit" onClick = {()=>this.onFinish()}>  
-                                Submit
+                                Sign In
                             </Button>
                                         
                         </Form.Item>

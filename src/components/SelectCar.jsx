@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col, Button } from 'antd';
 import '../styles/selectCarStyles.css';
 import {BrowserRouter as Router,Routes, Route, Link  } from 'react-router-dom';
-import SelectSeat from './SelectSeat';
+import SelectSeat from '../components/SelectSeat';
 
 class SelectCar extends React.Component{
     constructor(props){
