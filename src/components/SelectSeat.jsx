@@ -12,7 +12,6 @@ class SelectSeat extends React.Component{
        
             seatValues:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
             reservations:null,
-            fullSeats:[],
             isFull:null,
             dom : null,
         };
@@ -33,7 +32,6 @@ class SelectSeat extends React.Component{
         await axios.get("http://localhost:3001/reservation/").then(
             res=>{
                 const reservations = res.data;
-                console.log(reservations);
                 this.setState({reservations:reservations});
                 return reservations;
             })
@@ -43,7 +41,7 @@ class SelectSeat extends React.Component{
                 this.state.reservations.forEach(reservation=>{
                     if(reservation.carInfo === localStorage.getItem('carValue')){
                         seats.push(reservation.seatInfo);
-                        this.setState({fullSeats:seats});
+                  
                     }
     
                 })
@@ -107,10 +105,6 @@ class SelectSeat extends React.Component{
             <div className="container">
             <h1 className="context">Select Seat from Car {carValue}</h1>
             {this.state.dom}
-         
-
-           
-            
 
             </div>
                 

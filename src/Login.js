@@ -77,7 +77,7 @@ class Login extends React.Component{
     render(){
    
         return(
-            <div>
+            <div className="outer_container">
                 <div>
                 <img id="logo" src={logo} alt="Logo" />
                 </div>

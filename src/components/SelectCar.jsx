@@ -13,7 +13,7 @@ class SelectCar extends React.Component{
                 background: '#0092ff', 
                 padding: '8px 0',
             },
-            carValues:['A','B','C','D','E','F','G','H','J','K','L']
+            carValues:['A','B','C','D','E','F','G','H',"I",'J','K','L']
         };
     }
 

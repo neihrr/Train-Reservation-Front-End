@@ -12,3 +12,9 @@ div#form_container{
     margin-right:170px;
 }
 
+.outer_container{
+    background: url(../images/trainpic.png) no-repeat center center fixed;
+    background-color: black;
+    height: 900px;
+    width: 1440px;
+}
