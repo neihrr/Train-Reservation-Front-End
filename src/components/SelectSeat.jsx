@@ -66,15 +66,33 @@ class SelectSeat extends React.Component{
             var counter = 1;
 
             for(let col=0; col<24; col++){
-                cols.push(
-                <Col className="gutter-row" span={6}>
-                <div className="car-container-first" style={this.style}>
-                    <Link to="/PopUp">
-                    <Button type="primary" style={{ backgroundColor : (seatStatus[col+1]==true) ? "orange" : "purple"}} onClick={()=>{this.handleChange(col+1)}}>{counter++}</Button>
+                if(seatStatus[col+1]==true){
+                    cols.push(
+                        <Col className="gutter-row" span={6}>
+                        <div className="car-container-first" style={this.style}>
+                            <Link to="/PopUp">
+                            <Button type="primary" style={{ backgroundColor : "orange"}} onClick={()=>{this.handleChange(col+1)}} disabled>{counter++}</Button>
+        
+                            </Link>
+                        </div>
+                    </Col>)
+                    
+                }
 
-                    </Link>
-                </div>
-            </Col>);
+                if(seatStatus[col+1]==false){
+                    cols.push(
+                        <Col className="gutter-row" span={6}>
+                        <div className="car-container-first" style={this.style}>
+                            <Link to="/PopUp">
+                            <Button type="primary" style={{ backgroundColor : "purple"}} onClick={()=>{this.handleChange(col+1)}} >{counter++}</Button>
+        
+                            </Link>
+                        </div>
+                    </Col>)
+                    
+                }
+                
+                
             }
 
                 
