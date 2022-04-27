@@ -77,7 +77,9 @@ class Login extends React.Component{
     render(){
    
         return(
-            <div className="outer_container">
+            <>
+                <div className="brand-nav">RAIL-AWAY</div>
+             <div className="outer_container">
                 <div>
                 <img id="logo" src={logo} alt="Logo" />
                 </div>
@@ -122,7 +124,10 @@ class Login extends React.Component{
 
                 </div>
             </div>
+            <div className="brand-footer">@ 2022 RAIL-AWAY - All Rights reserved.</div>
 
+            </>
+            
         );
     }
 }

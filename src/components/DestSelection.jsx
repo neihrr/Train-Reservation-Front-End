@@ -75,6 +75,8 @@ class DestSelection extends React.Component{
 
     render(){
         return(
+            <>
+            <div className='brand-nav'>RAIL-AWAY</div>
             <div>
                 <Form name="time_related_controls" id="form_element" {...this.state.formItemLayout} onFinish={(values)=>this.onFinish(values)}>
                 <Form.Item
@@ -158,6 +160,10 @@ class DestSelection extends React.Component{
                 </Form.Item>
             </Form>
             </div>
+            <div className="brand-footer">@ 2022 RAIL-AWAY - All Rights reserved.</div>
+
+            </>
+            
         );
     }
 }

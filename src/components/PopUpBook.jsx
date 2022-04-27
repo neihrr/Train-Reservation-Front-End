@@ -176,7 +176,9 @@ import jwt_decode from 'jwt-decode';
        
 
         return(
-            <Form className="form_parent" {...this.state.formItemLayout}
+            <>
+                <div className='brand-nav'>RAIL-AWAY</div>
+                <Form className="form_parent" {...this.state.formItemLayout}
            
             name="book"
             initialValues={{
@@ -235,7 +237,10 @@ import jwt_decode from 'jwt-decode';
                 }
                 
         </Form>
+        <div className="brand-footer">@ 2022 RAIL-AWAY - All Rights reserved.</div>
 
+            </>
+            
         );
     }
 

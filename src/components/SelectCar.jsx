@@ -97,7 +97,7 @@ class SelectCar extends React.Component{
                         </div>
                     </Col>
                 </Row>
-                <Row className='outer-row' gutter={16}>
+                <Row className='outer-row-last' gutter={16}>
                     <Col className='gutter-row' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection'>
@@ -132,6 +132,8 @@ class SelectCar extends React.Component{
                     </Col>
                 </Row>
             </div>
+          
+
             </>
             
         );

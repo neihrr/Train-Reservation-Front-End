@@ -1,10 +1,11 @@
 div#form_container{
     margin-left: auto;
     margin-right: auto;
-    width:45%;
+    width:45%; 
 }
 
 #logo{
+    width:187px;
     clear: both;
 }
 
@@ -13,8 +14,28 @@ div#form_container{
 }
 
 .outer_container{
-    background: url(../images/trainpic.png) no-repeat center center fixed;
+    background: url(../images/pexels-eternal-child-3791919.png) no-repeat center center fixed;
     background-color: black;
-    height: 900px;
-    width: 1440px;
+    height: 690px;
+}
+
+.brand-nav{
+    width:100%;
+    height:50px;
+    background-color: black;
+    color:white;
+    text-align:center;
+    vertical-align:center;
+    padding-top: 13px;
+}
+
+.brand-footer{
+    width:100%;
+    height:50px;
+    background-color: black;
+    margin-top:0px !important;
+    color:white;
+    text-align:center;
+    vertical-align:center;
+    padding-top: 13px;
 }

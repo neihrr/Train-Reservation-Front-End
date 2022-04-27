@@ -18,12 +18,11 @@ class SelectSeat extends React.Component{
     }
     handleClickCount = () => {
     
-        console.log(this.state.clickCount);
     }
 
     handleChange = (index) =>{
         console.log("called");
-        console.log(index);
+      
         localStorage.setItem('seat',this.state.seatValues[index]);
     }
 
@@ -52,9 +51,7 @@ class SelectSeat extends React.Component{
             let seatStatus = []
             console.log(seats);
             for(let i = 1; i <= 24; i++){
-                console.log("" + i);
-                console.log(seats[i-1]);
-                console.log(seats.includes("" + i));
+                
 
                 if(seats.includes("" + i)){
                     seatStatus[i] = true;
@@ -97,6 +94,7 @@ class SelectSeat extends React.Component{
     render(){
       
         const carValue = localStorage.getItem('carValue');
+        console.log(carValue);
         
         
         return(
@@ -107,8 +105,7 @@ class SelectSeat extends React.Component{
             {this.state.dom}
 
             </div>
-                
-                
+                   
             </>
 
            

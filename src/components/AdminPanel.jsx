@@ -32,7 +32,7 @@ class AdminPanel extends React.Component {
         this.setState({isModalVisible:true});
         this.state.reservations.some(e => {
             if(e.carInfo == this.state.carValues[carValueIndex]){
-                carReservations.push({res_Id:e.reservationId, name:e.firstName, last_name:e.lastName, car_info:e.carInfo, seat_info: e.seatInfo, ticket_price:e.cost})
+                carReservations.push({name:e.firstName, last_name:e.lastName, car_info:e.carInfo, seat_info: e.seatInfo, departure:e.departure, arrival:e.arrival ,ticket_price:"$"+e.cost})
             }});
         
         this.setState({reservationTableData:carReservations});
@@ -145,11 +145,6 @@ class AdminPanel extends React.Component {
     render(){
         const columns = [
             {
-              title: 'res_Id',
-              dataIndex: 'res_Id',
-              key: 'res_Id',
-            },
-            {
               title: 'name',
               dataIndex: 'name',
               key: 'name',
@@ -170,10 +165,30 @@ class AdminPanel extends React.Component {
               dataIndex: 'seat_info',
             },
             {
+                title: 'departure',
+                key: 'departure',
+                dataIndex: 'departure',
+              },
+              {
+                title: 'arrival',
+                key: 'arrival',
+                dataIndex: 'arrival',
+              },
+              {
                 title: 'ticket_price',
                 key: 'ticket_price',
                 dataIndex: 'ticket_price',
               },
+              {
+                title: 'Action',
+                key: 'action',
+                render: (text, record) => (
+                  <Space size="middle">
+                  
+                    <Button type="primary" onClick={()=>this.deletion()}>Cancel</Button>
+                  </Space>
+                ),
+            },
           ];
           
         return(
@@ -182,11 +197,19 @@ class AdminPanel extends React.Component {
                 <h1 className="context"> WELCOME ADMIN</h1>
                 <div className="container_div">
                     {this.state.dom}
-                    <Modal title="Basic Modal" className="popup-modal" visible={this.state.isModalVisible} onOk={()=>this.handleOk()} >
-                        <Table columns={columns} dataSource={this.state.reservationTableData} />
+                    <Modal title="RESERVATION INFORMATION" 
+                    className="popup-modal" 
+                    visible={this.state.isModalVisible} 
+                    closeIcon={<></>}
+                    footer = {[
+                    <Button key="ok" type="primary" onClick={()=>this.handleOk()}>
+                    OK
+                    </Button>,]}>
+                        <Table columns={columns} dataSource={this.state.reservationTableData}/>
                     </Modal>
-
                 </div>
+                <div className="brand-footer">@ 2022 RAIL-AWAY - All Rights reserved.</div>
+
             </>
             
            

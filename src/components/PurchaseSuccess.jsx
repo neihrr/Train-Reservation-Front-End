@@ -10,23 +10,27 @@ class PurchaseSuccess extends React.Component{
     }
     render(){
         return(
-        <div>
-            <h1 className="caption"><img className="check_image" src={check} alt="Check"/>Purchase Succesful!</h1>
-            <p className="purchase_message">Total cost of purchase: ${localStorage.getItem('cost')}</p>
-            <Link to="/Cancellation">
-                <Button className="cancel" type="primary">Cancel</Button>
-            </Link>
-            <Link to="/Destination">
-                <Button className="cont" type="primary">Continue to Purchase</Button>
-            </Link>
-            <br/>
-           
-            <Link to="/">
-                <Button className="sign_out" type="primary" >Sign Out</Button>
-            </Link>
-           
-            
-        </div>);
+            <>
+                <div className='brand-nav'>RAIL-AWAY</div>
+                <div>
+                    <h1 className="caption"><img className="check_image" src={check} alt="Check"/>Purchase Succesful!</h1>
+                    <p className="purchase_message">Total cost of purchase: ${localStorage.getItem('cost')}</p>
+                    <Link to="/Cancellation">
+                        <Button className="cancel" type="primary">Cancel</Button>
+                    </Link>
+                    <Link to="/Destination">
+                        <Button className="cont" type="primary">Continue to Purchase</Button>
+                    </Link>
+                    <br/>
+                
+                    <Link to="/">
+                        <Button className="sign_out" type="primary" >Sign Out</Button>
+                    </Link>
+                </div>
+                <div className="brand-footer">@ 2022 RAIL-AWAY - All Rights reserved.</div>
+
+            </>
+        );
     }
 
 }
