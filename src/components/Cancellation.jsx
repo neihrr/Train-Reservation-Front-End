@@ -10,36 +10,50 @@ class Cancellation extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            user_reservations:""
+            user_reservations:null,
+            dom:null,
         }
         this.getReservations=this.getReservations.bind(this);
 
     }
-    getReservations(){
+    async getReservations(){
         const token = localStorage.getItem('access_token');
         this.user = jwt_decode(token);
-        axios.get("https://localhost:3001/user/reservation"+this.user.userId).then(res=>
+     
+        await axios.get("http://localhost:3001/user/reservation/"+this.user.sub).then(res=>
         {const reservations = res.data;
+            console.log(reservations);
+
+            
             this.setState({user_reservations:reservations});
         })
     }
 
-    componentDidMount(){
-        this.getReservations();
+    async deleteReservation(reservationId){
+        await axios.delete("http://localhost:3001/reservation/"+reservationId);
+        const filteredReservations = this.state.user_reservations.filter(res => res.reservationId !== reservationId);
+        this.setState({user_reservations:{...filteredReservations}});
     }
 
-    returnReservations(){
-        const arr = [];
-        const ret = this.user_reservations.forEach((reservation)=>{arr.push(<Paragraph className="reservationDisplay">
-        <pre>{reservation} <Button type="primary">Cancel</Button></pre>
- 
-       </Paragraph>)})
+    async componentDidMount(){
+        await this.getReservations();
     }
 
     render(){
         return(
             <div>
                 <h1>YOUR RESERVATIONS</h1>
+                {
+                    this.state.user_reservations && this.state.user_reservations.map(
+                        (reservation) => {
+                            return (
+                           <Paragraph className="reservationDisplay">
+                            <pre>{reservation.firstName}, {reservation.lastName}, {reservation.departure}, {reservation.arrival}, {reservation.time}, {reservation.carInfo}, {reservation.seatInfo} 
+                            <Button type="primary" onClick = {()=>this.deleteReservation(reservation.reservationId)}>Cancel</Button></pre>
+                           </Paragraph>
+                        );
+                    })
+                }
             </div>
         );
     }

@@ -25,11 +25,11 @@ class SelectCar extends React.Component{
 
         return(
             <>
-            <div className='brand-nav'>RAIL-AWAY</div>
-            <div className='container'>
-                <h1 className='context'>Select a Car</h1>
-                <Row className='outer-row' classgutter={16}>
-                    <Col className='gutter-row' span={6}>
+            <div className='brand-nav-car'>RAIL-AWAY</div>
+            <div className='container-car'>
+                <h1 className='context-car'>Select a Car</h1>
+                <Row className='outer-row-car' classgutter={16}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container-first' style={this.style}>
                             <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(0)}>A</Button>
@@ -38,7 +38,7 @@ class SelectCar extends React.Component{
                         
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container-first' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(1)}>B</Button>
@@ -46,7 +46,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container-first' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(2)}>C</Button>
@@ -54,7 +54,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container-last' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(3)}>D</Button>
@@ -63,8 +63,8 @@ class SelectCar extends React.Component{
                         </div>
                     </Col>
                 </Row>
-                <Row className='outer-row' gutter={16}>
-                    <Col className='gutter-row' span={6}>
+                <Row className='outer-row-car' gutter={16}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(4)}>E</Button>
@@ -72,7 +72,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection' component={()=> <SelectSeat carValue={this.state.f}/>}>
                             <Button type='primary' onClick={()=>this.handleChange(5)}>F</Button>
@@ -80,7 +80,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(6)}>G</Button>
@@ -88,7 +88,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(7)}>H</Button>
@@ -97,8 +97,8 @@ class SelectCar extends React.Component{
                         </div>
                     </Col>
                 </Row>
-                <Row className='outer-row-last' gutter={16}>
-                    <Col className='gutter-row' span={6}>
+                <Row className='outer-row-car' gutter={16}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(8)}>I</Button>
@@ -106,7 +106,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(9)}>J</Button>
@@ -114,7 +114,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}> 
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(10)}>K</Button>
@@ -122,7 +122,7 @@ class SelectCar extends React.Component{
                             </Link>
                         </div>
                     </Col>
-                    <Col className='gutter-row' span={6}>
+                    <Col className='gutter-row-car' span={6}>
                         <div className='car-container' style={this.style}>
                         <Link to='/SeatSelection'>
                             <Button type='primary' onClick={()=>this.handleChange(11)}>L</Button>
@@ -132,6 +132,7 @@ class SelectCar extends React.Component{
                     </Col>
                 </Row>
             </div>
+            <div className="brand-footer-car">@ 2022 RAIL-AWAY - All Rights reserved.</div>
           
 
             </>

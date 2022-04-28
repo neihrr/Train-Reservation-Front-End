@@ -40,14 +40,9 @@ class SelectSeat extends React.Component{
                 this.state.reservations.forEach(reservation=>{
                     if(reservation.carInfo === localStorage.getItem('carValue')){
                         seats.push(reservation.seatInfo);
-                  
                     }
-    
                 })
             }
-
-
-            
             let seatStatus = []
             console.log(seats);
             for(let i = 1; i <= 24; i++){
@@ -68,8 +63,8 @@ class SelectSeat extends React.Component{
             for(let col=0; col<24; col++){
                 if(seatStatus[col+1]==true){
                     cols.push(
-                        <Col className="gutter-row" span={6}>
-                        <div className="car-container-first" style={this.style}>
+                        <Col className="gutter-row-seat" span={6}>
+                        <div className="car-container-first-seat" style={this.style}>
                             <Link to="/PopUp">
                             <Button type="primary" style={{ backgroundColor : "orange"}} onClick={()=>{this.handleChange(col+1)}} disabled>{counter++}</Button>
         
@@ -81,8 +76,8 @@ class SelectSeat extends React.Component{
 
                 if(seatStatus[col+1]==false){
                     cols.push(
-                        <Col className="gutter-row" span={6}>
-                        <div className="car-container-first" style={this.style}>
+                        <Col className="gutter-row-seat" span={6}>
+                        <div className="car-container-first-seat" style={this.style}>
                             <Link to="/PopUp">
                             <Button type="primary" style={{ backgroundColor : "purple"}} onClick={()=>{this.handleChange(col+1)}} >{counter++}</Button>
         
@@ -97,7 +92,7 @@ class SelectSeat extends React.Component{
 
                 
             for(let row=0; row<24; row++){
-                    rows.push(<Row className="outer-row-first" classgutter={16}>
+                    rows.push(<Row className="outer-row-first-seat" classgutter={16}>
                     {cols[row++]}
                     {cols[row++]}
                     {cols[row++]}
@@ -117,12 +112,12 @@ class SelectSeat extends React.Component{
         
         return(
             <>
-            <div className="brand-nav">RAIL-AWAY</div>
-            <div className="container">
-            <h1 className="context">Select Seat from Car {carValue}</h1>
+            <div className="brand-nav-seat">RAIL-AWAY</div>
+            <div className="container-seat">
+            <h1 className="context-seat">Select Seat from Car {carValue}</h1>
             {this.state.dom}
-
             </div>
+            <div className="brand-footer-seat">@ 2022 RAIL-AWAY - All Rights reserved.</div>
                    
             </>
 

@@ -99,8 +99,8 @@ class AdminPanel extends React.Component {
             console.log(carStatus[i]);
             if(carStatus[i] == true){
                 cols.push(
-                    <Col key = {i} className="gutter-row" span={6}>
-                        <div className="car-container-first" style={this.style}>
+                    <Col key = {i} className="gutter-row-admin" span={6}>
+                        <div className="car-container-first-admin" style={this.style}>
                             <Link to="/PopUp">
                             <Button type="primary" onClick={()=>{this.showModal(i)}}>{this.state.carValues[i]}</Button>
                             {console.log(this.state.isModalVisible)}
@@ -112,8 +112,8 @@ class AdminPanel extends React.Component {
             }
             if(carStatus[i] == false){
                 cols.push(
-                    <Col key = {i} className="gutter-row" span={6}>
-                    <div className="car-container" style={this.style}>
+                    <Col key = {i} className="gutter-row-admin" span={6}>
+                    <div className="car-container-admin" style={this.style}>
                         <Link to="/PopUp">
                         <Button type="primary" onClick={()=>{this.showModal(i)}} disabled>{this.state.carValues[i]}</Button>
                       
@@ -126,7 +126,7 @@ class AdminPanel extends React.Component {
 
         for(let row=0; row<12;){
             rows.push(
-                <Row  className="outer-row" classgutter={16}>
+                <Row  className="outer-row-admin" classgutter={16}>
                     {cols[row++]}
                     {cols[row++]}
                     {cols[row++]}
@@ -193,9 +193,9 @@ class AdminPanel extends React.Component {
           
         return(
             <>
-                <div className='brand-nav'>RAIL-AWAY</div>
-                <h1 className="context"> WELCOME ADMIN</h1>
-                <div className="container_div">
+                <div className='brand-nav-admin'>RAIL-AWAY</div>
+                <h1 className="context-admin"> WELCOME ADMIN</h1>
+                <div className="container_div-admin">
                     {this.state.dom}
                     <Modal title="RESERVATION INFORMATION" 
                     className="popup-modal" 
@@ -208,7 +208,7 @@ class AdminPanel extends React.Component {
                         <Table columns={columns} dataSource={this.state.reservationTableData}/>
                     </Modal>
                 </div>
-                <div className="brand-footer">@ 2022 RAIL-AWAY - All Rights reserved.</div>
+                <div className="brand-footer-admin">@ 2022 RAIL-AWAY - All Rights reserved.</div>
 
             </>
             
