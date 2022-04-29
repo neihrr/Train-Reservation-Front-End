@@ -1,6 +1,5 @@
 import React from 'react';
-import Userfront from "@userfront/core";
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button} from 'antd';
 import 'antd/dist/antd.css';
 import './styles/loginStyles.css';
 import {BrowserRouter as Router,Routes, Route, Link, useLocation,
@@ -9,8 +8,6 @@ import {BrowserRouter as Router,Routes, Route, Link, useLocation,
 import axios from 'axios';
 import logo from './images/for_logo2.png';
 import jwt_decode from 'jwt-decode';
-import { getKeyThenIncreaseKey } from 'antd/lib/message';
-import { ExclamationOutlined} from '@ant-design/icons';
 
 async function send(u,p){
     const response = await axios.post('http://localhost:3001/auth/login',
@@ -33,19 +30,13 @@ class Login extends React.Component{
         };
     }
 
-    
-
     async onFinish(){
         let path = "/";
-  
-
-        const res =  await send(this.state.username,this.state.password);
-        
+        const res =  await send(this.state.username,this.state.password);        
         localStorage.setItem('access_token', res.data.access_token);
-
         console.log(res.data.access_token);
-
         this.user = jwt_decode(res.data.access_token);
+        console.log(this.user);
 
         switch(this.user.role)
         {

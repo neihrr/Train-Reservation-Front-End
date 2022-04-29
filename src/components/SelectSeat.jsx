@@ -66,7 +66,7 @@ class SelectSeat extends React.Component{
                         <Col className="gutter-row-seat" span={6}>
                         <div className="car-container-first-seat" style={this.style}>
                             <Link to="/PopUp">
-                            <Button type="primary" style={{ backgroundColor : "orange"}} onClick={()=>{this.handleChange(col+1)}} disabled>{counter++}</Button>
+                            <Button type="primary" className="seat-box" style={{ backgroundColor : "green"}} onClick={()=>{this.handleChange(col+1)}} disabled>{counter++}</Button>
         
                             </Link>
                         </div>
@@ -79,7 +79,7 @@ class SelectSeat extends React.Component{
                         <Col className="gutter-row-seat" span={6}>
                         <div className="car-container-first-seat" style={this.style}>
                             <Link to="/PopUp">
-                            <Button type="primary" style={{ backgroundColor : "purple"}} onClick={()=>{this.handleChange(col+1)}} >{counter++}</Button>
+                            <Button type="primary" className="seat-box" style={{ backgroundColor : "purple"}} onClick={()=>{this.handleChange(col+1)}} >{counter++}</Button>
         
                             </Link>
                         </div>

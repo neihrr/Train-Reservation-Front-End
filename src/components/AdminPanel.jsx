@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/AdminPanel.css';
 import { Typography,Button,Row,Col,Modal,Table, Tag, Space} from 'antd';
+import {Icon, DollarOutlined} from '@ant-design/icons';
 import axios from 'axios';
 const { Title, Paragraph, Text, Link } = Typography;
 
@@ -194,6 +195,7 @@ class AdminPanel extends React.Component {
         return(
             <>
                 <div className='brand-nav-admin'>RAIL-AWAY</div>
+                
                 <h1 className="context-admin"> WELCOME ADMIN</h1>
                 <div className="container_div-admin">
                     {this.state.dom}
@@ -208,6 +210,7 @@ class AdminPanel extends React.Component {
                         <Table columns={columns} dataSource={this.state.reservationTableData}/>
                     </Modal>
                 </div>
+                <div className='revenue-bar'><DollarOutlined /><DollarOutlined /><DollarOutlined />Total Revenue: ${this.state.revenue}</div>
                 <div className="brand-footer-admin">@ 2022 RAIL-AWAY - All Rights reserved.</div>
 
             </>

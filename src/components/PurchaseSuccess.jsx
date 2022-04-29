@@ -3,7 +3,7 @@ import{Button} from 'antd';
 import '../styles/PurchaseStyles.css';
 import check from '../images/download.png';
 import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
-import { AntDesignOutlined } from "@ant-design/icons";
+import { DollarOutlined, CloseCircleOutlined } from "@ant-design/icons";
 class PurchaseSuccess extends React.Component{
     constructor(props){
         super(props);
@@ -16,10 +16,10 @@ class PurchaseSuccess extends React.Component{
                     <h1 className="caption"><img className="check_image" src={check} alt="Check"/>Purchase Succesful!</h1>
                     <p className="purchase_message">Total cost of purchase: ${localStorage.getItem('cost')}</p>
                     <Link to="/Cancellation">
-                        <Button className="cancel" type="primary">Cancel</Button>
+                        <Button className="cancel" type="primary">Cancel<CloseCircleOutlined /></Button>
                     </Link>
                     <Link to="/Destination">
-                        <Button className="cont" type="primary">Continue to Purchase</Button>
+                        <Button className="cont" type="primary">Continue to Purchase<DollarOutlined /></Button>
                     </Link>
                     <br/>
                 

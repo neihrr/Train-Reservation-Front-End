@@ -8,22 +8,23 @@
 }
 .purchase_message{
     text-align: center;
-    margin-left: 20px;
+    margin-left: 30px;
+    margin-bottom: 3%;
 }
 .cancel{
-    margin-left:38%;
-    width:170px;
+    margin-left:36.5%;
+    width:190px;
 }
 .cont{
     margin-right: auto;
     margin-left:5%;
-    width:170px;
+    width:190px;
 }
 .sign_out{
     margin-top: 38px;
     margin-left:45%;
-    width:170px;
-    margin-bottom: 295px;
+    width:190px;
+  
 }
 
 .brand-nav{
@@ -44,4 +45,6 @@
     text-align:center;
     vertical-align:center;
     padding-top: 13px;
+    position:absolute;
+    bottom:0px;
 }
