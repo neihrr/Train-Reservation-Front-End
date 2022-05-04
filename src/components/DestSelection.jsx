@@ -1,7 +1,11 @@
 import React from "react";
-import { Form, DatePicker, TimePicker, Button, Input } from 'antd';
+import { Form, DatePicker, TimePicker, Tabs ,Button, Input } from 'antd';
 import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import '../styles/DestStyles.css';
+import DestinationForm from './DestinationForm.jsx';
+import DestinationRoundForm from './DestinationRoundForm.jsx';
+import { StickyContainer, Sticky } from 'react-sticky';
+
 
 
 class DestSelection extends React.Component{
@@ -71,95 +75,35 @@ class DestSelection extends React.Component{
         this.setState({date:e.target.value});
         localStorage.setItem('date',e.target.value);
     }
+    handleReturnDate(e){
+        this.setState({returnDate:e.target.value});
+        localStorage.setItem('returnDate',e.target.value);
+    }
     
 
     render(){
+        const { TabPane } = Tabs;
+        const renderTabBar = (props, DefaultTabBar) => (
+            <Sticky bottomOffset={80}>
+              {({ style }) => (
+                <DefaultTabBar {...props} className="site-custom-tab-bar" style={{ ...style }} />
+              )}
+            </Sticky>
+          );
         return(
             <>
             <div className='brand-nav'>RAIL-AWAY</div>
-            <div>
-                <Form name="time_related_controls" id="form_element" {...this.state.formItemLayout} onFinish={(values)=>this.onFinish(values)}>
-                <Form.Item
-                    className="name_and_number_inputs"
-                    name="departure"
-                    label="Departure"
-                    rules={[
-                    {
-                        required: true,
-                        message: 'Please input your departure location',
-                    },
-                    ]}
-                >
-                    <Input placeholder="Please input your departure location" onChange={(e)=>this.handleDeparture(e)}/>
-                </Form.Item>
-                <Form.Item
-                 className="name_and_number_inputs"
-                 name="arrival"
-                 label="Arrival"
-                 rules={[
-                 {
-                    required: true,
-                    message: 'Please input your arrival location',
-                 },
-                 ]}
-             >
-                 <Input placeholder="Please input your arrival location" onChange={(e)=>this.handleArrival(e)}/>
-             </Form.Item>
-               
-             <Form.Item
-                 className="name_and_number_inputs"
-                 name="date"
-                 label="Date"
-                 rules={[
-                 {
-                     required: true,
-                     message: 'yyyy-mm-dd',
-                 },
-                 ]}
-             >
-                <Input placeholder="yyyy-mm-dd" onChange={(e)=>this.handleDate(e)}/>
-             </Form.Item>
-
-             <Form.Item
-                 className="name_and_number_inputs"
-                 name="time"
-                 label="Time"
-                 rules={[
-                 {
-                     required: true,
-                     message: 'hh:mm',
-                 },
-                 ]}
-             >
-                 <Input placeholder="hh:mm" onChange={(e)=>this.handleTime(e)}/>
-             </Form.Item>
+            <StickyContainer className="tab-container">
+                <Tabs defaultActiveKey="1" classname="tab-bar" renderTabBar={renderTabBar} centered>
+                    <TabPane className="first-tab" tab="One Way" key="1" >
+                        <DestinationForm></DestinationForm>    
+                    </TabPane>
                 
-                <Form.Item
-                    wrapperCol={{
-                    xs: {
-                        span: 24,
-                        offset: 0,
-                    },
-                    sm: {
-                        span: 16,
-                        offset: 8,
-                    },
-                    }}
-                >
-                    <Link to="/CarSelection">
-                        <Button 
-                        className="check_button"
-                        type="primary" 
-                        htmlType="submit">
-                        Check for Seats
-                        </Button>
-                    
-                    </Link>
-                   
-                   
-                </Form.Item>
-            </Form>
-            </div>
+                    <TabPane className="second-tab" tab="Round Trip" key="2">
+                        <DestinationRoundForm></DestinationRoundForm>
+                    </TabPane>
+               </Tabs>
+            </StickyContainer>
             <div className="brand-footer">@ 2022 RAIL-AWAY - All Rights reserved.</div>
 
             </>

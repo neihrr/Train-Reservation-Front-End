@@ -1,5 +1,5 @@
 .outer-row-car{
-    margin-bottom:152px;}
+    margin-bottom:120px;}
 
 
 .container-car{
@@ -43,9 +43,9 @@ Button{
 }
 
 .context-car{
-    margin-right: 12%;
+
     margin-top:auto;
-    margin-bottom:5%;
-    text-align:center;
+    margin-bottom:2%;
+    text-align: left;
 }
 

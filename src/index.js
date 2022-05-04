@@ -11,21 +11,23 @@ import PopUpBook from './components/PopUpBook.jsx';
 import AdminPanel from './components/AdminPanel.jsx';
 import PurchaseSuccess from './components/PurchaseSuccess.jsx';
 import Cancellation from './components/Cancellation.jsx';
+import SelectCarRound from './components/SelectCarRound.jsx';
+import SelectSeatRound from './components/SelectSeatRound.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-
           <Route path="/Destination" element={<DestSelection/>}></Route>
           <Route path="/CarSelection" element={<SelectCar/>}></Route>
           <Route path="/SeatSelection" element={<SelectSeat/>}></Route>
+          <Route path="/SelectCarRound" element={<SelectCarRound/>}></Route>
+          <Route path="/SelectSeatRound" element={<SelectSeatRound/>}></Route>
           <Route path="/PopUp" element = {<PopUpBook/>}></Route>
           <Route path="/AdminPanel" element = {<AdminPanel/>}></Route>
           <Route path="/PurchaseSuccess" element = {<PurchaseSuccess/>}></Route>
           <Route path="/Cancellation" element = {<Cancellation/>}></Route>
-          <Route path="/" element={<App/>}></Route>
-        
+          <Route path="/" element={<App/>}></Route> 
       </Routes>
 
     </Router>

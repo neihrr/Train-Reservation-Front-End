@@ -75,15 +75,37 @@ import jwt_decode from 'jwt-decode';
 
         async handleButtonClick(e){
             console.log("clicked");
-            const access_token = localStorage.getItem("access_token");
-
-            const date = localStorage.getItem("date");
-            const time = localStorage.getItem("time");
-            const departure = localStorage.getItem("departure");
-            const cost = localStorage.getItem("cost");
-            const car = localStorage.getItem("carValue");
-            const seat = localStorage.getItem("seat");
-            const arrival = localStorage.getItem("arrival");
+            const carDep = localStorage.getItem("carValueDeparture");
+            const carRet =  localStorage.getItem("carValueReturn");
+            const access_token = null;
+            const date = null;
+            const dateOfReturn = null;
+            const time = null;
+            const departure = null;
+            const cost = null;
+            const seat = null;
+            const arrival = null
+    
+            if(carDep && carRet){
+                 access_token = localStorage.getItem("access_token");
+                 date = localStorage.getItem("date");
+                 dateOfReturn = localStorage.getItem("returnDate");
+                 time = localStorage.getItem("time");
+                 departure = localStorage.getItem("departure");
+                 cost = localStorage.getItem("cost");
+                 seat = localStorage.getItem("seat");
+                 arrival = localStorage.getItem("arrival");
+            }
+            else{
+                 access_token = localStorage.getItem("access_token");
+                 date = localStorage.getItem("date");
+                 time = localStorage.getItem("time");
+                 departure = localStorage.getItem("departure");
+                 cost = localStorage.getItem("cost");
+                 seat = localStorage.getItem("seat");
+                 arrival = localStorage.getItem("arrival");
+            }
+            
 
             const user = jwt_decode(access_token);
             console.log(user);

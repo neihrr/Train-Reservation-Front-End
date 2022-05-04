@@ -4,18 +4,31 @@
     width:30%;
 }
 
-.check_button{
+.check_button-one-way{
     margin-left:17.5%;
     margin-right: auto;
     width:200px;
-    margin-bottom:340px;
-
 }
 
-#form_element{
-    margin-top: 5%;
+.first-bar{
+    margin-left: 20% !important;
+}
+
+.second-tabsecond-tab{
+    margin-left: 20%  !important;
+    margin-right: 0%  !important;
+}
+
+#form_element-first{
+
     margin-right: 5%;
 }
+
+#form_element-second{
+
+    margin-right: 5%;
+}
+
 .brand-nav{
     width:100%;
     height:50px;
@@ -34,4 +47,19 @@
     text-align:center;
     vertical-align:center;
     padding-top: 13px;
+    position:absolute;
+    bottom:0;
+}
+
+.site-custom-tab-bar {
+    z-index: 1;
+    background: #fff;
+}
+
+.check_button-round-trip{
+    margin-left:17.5%;
+    margin-right: auto;
+    width:200px;
+   
+
 }
