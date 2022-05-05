@@ -45,42 +45,7 @@ class DestSelection extends React.Component{
             }
         };
     }
-    componentDidUpdate(){
-        console.log(this.state.departure);
-        console.log(this.state.arrival);
     
-    }
-
-    onFinish(values){
-        console.log('Success:', values);
-    }
-
-    onFinishFailed(errorInfo){
-        console.log('Failed:', errorInfo);
-    }
-
-    handleArrival(e){
-        this.setState({arrival:e.target.value});
-        localStorage.setItem('arrival',e.target.value);
-    }
-    handleDeparture(e){
-        this.setState({departure:e.target.value});
-        localStorage.setItem('departure',e.target.value);
-    }
-    handleTime(e){
-        this.setState({time:e.target.value});
-        localStorage.setItem('time',e.target.value);
-    }
-    handleDate(e){
-        this.setState({date:e.target.value});
-        localStorage.setItem('date',e.target.value);
-    }
-    handleReturnDate(e){
-        this.setState({returnDate:e.target.value});
-        localStorage.setItem('returnDate',e.target.value);
-    }
-    
-
     render(){
         const { TabPane } = Tabs;
         const renderTabBar = (props, DefaultTabBar) => (
@@ -96,7 +61,7 @@ class DestSelection extends React.Component{
             <StickyContainer className="tab-container">
                 <Tabs defaultActiveKey="1" classname="tab-bar" renderTabBar={renderTabBar} centered>
                     <TabPane className="first-tab" tab="One Way" key="1" >
-                        <DestinationForm></DestinationForm>    
+                        <DestinationForm ></DestinationForm>    
                     </TabPane>
                 
                     <TabPane className="second-tab" tab="Round Trip" key="2">

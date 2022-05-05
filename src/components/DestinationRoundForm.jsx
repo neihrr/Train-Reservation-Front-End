@@ -26,6 +26,23 @@ class DestinationRoundForm extends React.Component {
             }
         }
     }
+
+    handleArrival(e){
+        localStorage.setItem('arrival',e.target.value);
+    }
+
+    handleDeparture(e){
+        localStorage.setItem('departure',e.target.value);
+    }
+
+    handleDate(e){
+        localStorage.setItem('date',e.target.value);
+    }
+
+    handleReturnDate(e){
+        localStorage.setItem('returnDate',e.target.value);
+    }
+
     render(){
         return(
             <Form name="time_related_controls" id="form_element-first" {...this.state.formItemLayout} onFinish={(values)=>this.onFinish(values)}>
@@ -71,7 +88,7 @@ class DestinationRoundForm extends React.Component {
     </Form.Item>
     <Form.Item
         className="name_and_number_inputs"
-        name="date"
+        name="returnDate"
         label="Date of Return"
         rules={[
         {
@@ -99,7 +116,8 @@ class DestinationRoundForm extends React.Component {
                 <Button 
                 className="check_button-one-way"
                 type="primary" 
-                htmlType="submit">
+                htmlType="submit" 
+                onClick={() => localStorage.setItem("isRound", true)}>
                 Check for Seats
                 </Button>
             

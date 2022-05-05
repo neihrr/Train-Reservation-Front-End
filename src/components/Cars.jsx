@@ -27,9 +27,17 @@ class Cars extends React.Component{
         const _departure = localStorage.getItem("carValueDeparture");
         const _return = localStorage.getItem("carValueReturn");
 
-        if(_departure && _return){
-            this.history("/SelectSeatRound");
+        if(localStorage.getItem("isRound") === "false"){
+            console.log("hellllogg")
+            this.history("/SeatSelection");
         }
+        if(localStorage.getItem("isRound") === "true"){
+            if(_departure && _return){
+                this.history("/SelectSeatRound");
+            }
+        }
+        
+        
         
     }
     render(){

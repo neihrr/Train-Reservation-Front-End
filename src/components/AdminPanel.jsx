@@ -33,7 +33,7 @@ class AdminPanel extends React.Component {
         this.setState({isModalVisible:true});
         this.state.reservations.some(e => {
             if(e.carInfo == this.state.carValues[carValueIndex]){
-                carReservations.push({name:e.firstName, last_name:e.lastName, car_info:e.carInfo, seat_info: e.seatInfo, departure:e.departure, arrival:e.arrival ,ticket_price:"$"+e.cost})
+                carReservations.push({reservationId : e.reservationId, name:e.firstName, last_name:e.lastName, car_info:e.carInfo, seat_info: e.seatInfo, departure:e.departure, arrival:e.arrival ,ticket_price:"$"+e.cost})
             }});
         
         this.setState({reservationTableData:carReservations});
@@ -43,12 +43,8 @@ class AdminPanel extends React.Component {
         this.setState({isModalVisible:false});
     
     }
-    deletion(index){
-        index = parseInt(index);
-        console.log(index);
-        console.log(this.state.data[index]);
-        const reservation_token = this.state.data[index].reservationId;
-        axios.delete("http://localhost:3001/reservation/"+reservation_token);
+    deletion(id){
+        axios.delete("http://localhost:3001/reservation/"+id);
     }
 
     async componentDidMount(){
@@ -180,13 +176,13 @@ class AdminPanel extends React.Component {
                 key: 'ticket_price',
                 dataIndex: 'ticket_price',
               },
+              
               {
                 title: 'Action',
                 key: 'action',
                 render: (text, record) => (
                   <Space size="middle">
-                  
-                    <Button type="primary" onClick={()=>this.deletion()}>Cancel</Button>
+                    <Button type="primary" onClick={()=>this.deletion(record.reservationId)}>Cancel</Button>
                   </Space>
                 ),
             },

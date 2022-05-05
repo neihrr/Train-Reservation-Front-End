@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/PopUpStyle.css'
+import { useNavigate } from 'react-router-dom';
 import {
     Form,
     Input,
@@ -16,10 +17,12 @@ import {
   import {BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
     class PopUpBook extends React.Component{
       constructor(props){
           super(props);
+          this.history = this.props.navigation;
           this.checked = false;
           this.onChange = this.onChange.bind(this);
           this.reservation = {
@@ -63,78 +66,70 @@ import jwt_decode from 'jwt-decode';
             isChecked:false,
             }
         }
-        componentDidUpdate(){
-            if(this.state.isChecked!=false){
-                console.log("book available");
-            }
-            else{
-                console.log("nope");
-            }
-            
-        }
 
         async handleButtonClick(e){
-            console.log("clicked");
+            const access_token = localStorage.getItem("access_token");
+            const user = jwt_decode(access_token);
+
+            console.log("Log: ", 1);
+
+            if(user === undefined || user === null){
+                alert("Please log in before applying a booking form.");
+                localStorage.clear();
+                return;
+            }
+
+            console.log("Log: ", 2);
+
             const carDep = localStorage.getItem("carValueDeparture");
             const carRet =  localStorage.getItem("carValueReturn");
-            const access_token = null;
-            const date = null;
-            const dateOfReturn = null;
-            const time = null;
-            const departure = null;
-            const cost = null;
-            const seat = null;
-            const arrival = null
-    
-            if(carDep && carRet){
-                 access_token = localStorage.getItem("access_token");
-                 date = localStorage.getItem("date");
-                 dateOfReturn = localStorage.getItem("returnDate");
-                 time = localStorage.getItem("time");
-                 departure = localStorage.getItem("departure");
-                 cost = localStorage.getItem("cost");
-                 seat = localStorage.getItem("seat");
-                 arrival = localStorage.getItem("arrival");
-            }
-            else{
-                 access_token = localStorage.getItem("access_token");
-                 date = localStorage.getItem("date");
-                 time = localStorage.getItem("time");
-                 departure = localStorage.getItem("departure");
-                 cost = localStorage.getItem("cost");
-                 seat = localStorage.getItem("seat");
-                 arrival = localStorage.getItem("arrival");
-            }
+            const seatDep = localStorage.getItem("seatValueDeparture");
+            const seatRet =  localStorage.getItem("seatValueReturn");
+
+            const date = localStorage.getItem("date");
+            const departure = localStorage.getItem("departure");
+            const cost = localStorage.getItem("cost");
+            const arrival = localStorage.getItem("arrival");
+            var dateOfReturn = null;
+            var type = "ONE_WAY";
             
-
-            const user = jwt_decode(access_token);
-            console.log(user);
-
-            if(user !== undefined){
-                const res = await axios.post("http://localhost:3001/reservation", 
-                    {
-                        userId : user.sub,
-                        firstName : this.reservation.first_name,
-                        lastName : this.reservation.last_name,
-                        date : date,
-                        time : time,
-                        departure : departure,
-                        cost : cost,
-                        carInfo : car,
-                        seatInfo : seat,
-                        arrival : arrival,
-                        phoneNumber : this.reservation.phone_number,
-                    }
-                ).catch(e=> alert("You can not purchase more than 4 seats!PURHCASE UNSUCCESFUL!"))
-                    console.log(res);
+            if(carDep !== null && carRet !== null){
+                 dateOfReturn = localStorage.getItem("returnDate");
+                 type = "ROUND_TRIP";
             }
-            else{
-                alert("Please log in before applying a booking form.");
-            }
+
+            const reservationCreateRequest = {
+                userId : user.sub,
+                firstName : this.reservation.first_name,
+                lastName : this.reservation.last_name,
+                date : date,
+                departure : departure,
+                cost : 80,
+                arrival : arrival,
+                phoneNumber : this.reservation.phone_number,
+                type : type,
+                dateOfReturn : dateOfReturn,
+                departureCar : carDep,
+                departureSeat : seatDep,
+                returnCar : carRet,
+                returnSeat : seatRet,
+            };
+
+            console.log("TESTT");
+
+            const res = await axios.post("http://localhost:3001/reservation", reservationCreateRequest)
+            .then(res => console.log(res))
+            .catch((err)=>{
+                console.log(err);
+
+            });
+            console.log(res);
 
             localStorage.clear();
             localStorage.setItem("access_token", access_token);
             localStorage.setItem("cost", cost);
+
+            this.history("/PurchaseSuccess");
         }
 
         onChange = (e) =>{
@@ -143,7 +138,6 @@ import jwt_decode from 'jwt-decode';
         };
 
         changed(e){
-            console.log(e.target)
             if(e.target.id !== undefined){
                 switch(e.target.id){
                     case 'first_name' : {
@@ -247,15 +241,10 @@ import jwt_decode from 'jwt-decode';
                 <br/>
                 {
                   
-                    this.state.isChecked && !this.state.isAlert? 
-                    <Link to='/PurchaseSuccess'>
-                        {localStorage.setItem('cost',this.state.cost)}
-                        <Button className="purchase_button" type="primary" onClick ={async (e) => this.handleButtonClick(e)}>BOOK ${this.state.cost}</Button>
-
-                    </Link>
-                    
+                    (this.state.isChecked && !this.state.isAlert) ? 
+                    <Button className="purchase_button" type="primary" onClick ={async (e) => this.handleButtonClick(e)}>BOOK ${this.state.cost}</Button>
                     :
-                    <Button className="notchecked_purchase_button" type="primary" onClick ={async (e) => this.handleButtonClick(e)} disabled>BOOK ${this.state.cost}</Button>
+                    <Button className="notchecked_purchase_button" type="primary" onClick ={async (e) => await this.handleButtonClick(e)} disabled>BOOK ${this.state.cost}</Button>
                 }
                 
         </Form>
@@ -268,4 +257,7 @@ import jwt_decode from 'jwt-decode';
 
 }
 
-export default PopUpBook;
+export default function(props) {
+    const navigation = useNavigate();
+    return <PopUpBook {...props} navigation={navigation} />;
+}

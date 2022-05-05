@@ -25,6 +25,19 @@ class DestinationForm extends React.Component {
             }
         }
     }
+
+    handleArrival(e){
+        localStorage.setItem('arrival',e.target.value);
+    }
+
+    handleDeparture(e){
+        localStorage.setItem('departure',e.target.value);
+    }
+
+    handleDate(e){
+        localStorage.setItem('date',e.target.value);
+    }
+
     render(){
         return(
             <Form name="time_related_controls" id="form_element-first" {...this.state.formItemLayout} onFinish={(values)=>this.onFinish(values)}>
@@ -85,7 +98,8 @@ class DestinationForm extends React.Component {
                 <Button 
                 className="check_button-one-way"
                 type="primary" 
-                htmlType="submit">
+                htmlType="submit"
+                onClick={() => localStorage.setItem("isRound", false)}>
                 Check for Seats
                 </Button>
             

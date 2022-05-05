@@ -2,11 +2,13 @@ import React from 'react';
 import {Row, Col, Button } from 'antd';
 import {BrowserRouter as Router,Routes, Route, Link} from 'react-router-dom';
 import '../styles/selectSeatStyles.css';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 class Seats extends React.Component{
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.history = this.props.navigation;
        
         this.state={
        
@@ -16,44 +18,81 @@ class Seats extends React.Component{
             dom : null,
         };
     }
-    handleClickCount = () => {
-    
-    }
 
     handleChange = (index) =>{
-        console.log("called");
+
+        if(this.props.departure){
+            localStorage.setItem("seatValueDeparture", this.state.seatValues[index]);
+        }else{
+            localStorage.setItem("seatValueReturn", this.state.seatValues[index]);
+        }
+
+        const _departure = localStorage.getItem("seatValueDeparture");
+        const _return = localStorage.getItem("seatValueReturn");
+
+        if(_departure && _return){
+            this.history("/PopUp");
+        }
+        if(localStorage.getItem("isRound") === "false"){
+            this.history("/PopUp");
+        }
+        
       
-        localStorage.setItem('seat',this.state.seatValues[index]);
     }
 
     async componentDidMount(){
-        const seats = [];
+        const seatsDep = [];
+        const seatsRet = [];
         await axios.get("http://localhost:3001/reservation/").then(
             res=>{
                 const reservations = res.data;
                 this.setState({reservations:reservations});
+                console.log(reservations);
                 return reservations;
             })
+            console.log("reservations");
+            console.log(this.state.reservations);
             
             //if the car selected by customer is the same as the one coming from backend push its info to seats array. set that as a state var
+            
             if(this.state.reservations !== undefined && this.state.reservations !== null && this.state.reservations.length > 0){
-                this.state.reservations.forEach(reservation=>{
-                    if(reservation.carInfo === localStorage.getItem('carValue')){
-                        seats.push(reservation.seatInfo);
+                this.state.reservations.map(reservation=>{
+                    if(reservation.carInfo === localStorage.getItem('carValueDeparture')){
+                        seatsDep.push(reservation.seatInfo);
                     }
                 })
             }
-            let seatStatus = []
-            console.log(seats);
-            for(let i = 1; i <= 24; i++){
-                
 
-                if(seats.includes("" + i)){
-                    seatStatus[i] = true;
+            if(localStorage.getItem("isRound") === "true"){
+                this.state.reservations.map(reservation=>{
+                    if(reservation.carInfo === localStorage.getItem('carValueReturn')){
+                        seatsRet.push(reservation.seatInfo);
+                    }
+                })
+                
+            }
+
+            let seatStatusDep = []
+            console.log("seats:");
+            console.log(seatsDep);
+            console.log(seatsRet);
+            for(let i = 1; i <= 24; i++){
+        
+                if(seatsDep.includes("" + i)){
+                    seatStatusDep[i] = true;
                     continue;
                 }
-                
-                seatStatus[i] = false;
+                seatStatusDep[i] = false;
+            }
+
+            let seatStatusRet = [];
+            for(let i = 1; i <= 24; i++){
+        
+                if(seatsRet.includes("" + i)){
+                    seatStatusRet[i] = true;
+                    continue;
+                }
+                seatStatusRet[i] = false;
             }
 
             const cols = [];
@@ -61,27 +100,23 @@ class Seats extends React.Component{
             var counter = 1;
 
             for(let col=0; col<24; col++){
-                if(seatStatus[col+1]==true){
+                if(seatStatusDep[col+1]==true || seatStatusRet[col+1]==true){
                     cols.push(
                         <Col className="gutter-row-seat" span={6}>
                         <div className="car-container-first-seat" style={this.style}>
                             <Button type="primary" className="seat-box" style={{ backgroundColor : "green"}} onClick={()=>{this.handleChange(col+1)}} disabled>{counter++}</Button>
                         </div>
-                    </Col>)
-                    
+                    </Col>)    
                 }
 
-                if(seatStatus[col+1]==false){
+                if(seatStatusDep[col+1]==false || seatStatusRet[col+1]==false){
                     cols.push(
                         <Col className="gutter-row-seat" span={6}>
                         <div className="car-container-first-seat" style={this.style}>
                             <Button type="primary" className="seat-box" style={{ backgroundColor : "purple"}} onClick={()=>{this.handleChange(col+1)}} >{counter++}</Button>
                         </div>
-                    </Col>)
-                    
-                }
-                
-                
+                    </Col>)    
+                }    
             }
 
                 
@@ -105,4 +140,7 @@ class Seats extends React.Component{
 
 } 
 
-export default Seats;
+export default function(props) {
+    const navigation = useNavigate();
+    return <Seats {...props} navigation={navigation} />;
+}

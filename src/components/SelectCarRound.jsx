@@ -18,7 +18,21 @@ class SelectCarRound extends React.Component{
     }
 
     componentDidMount(){
+        const access_token = localStorage.getItem("access_token");
+        const arrival = localStorage.getItem("arrival");
+        const departure = localStorage.getItem("departure");
+        const date = localStorage.getItem("date");
+        const returnDate = localStorage.getItem("returnDate");
+        const isRound = localStorage.getItem("isRound");
+        
         localStorage.clear();
+
+        localStorage.setItem("access_token", access_token);
+        localStorage.setItem("arrival", arrival);
+        localStorage.setItem("departure", departure);
+        localStorage.setItem("date", date);
+        localStorage.setItem("returnDate", returnDate);
+        localStorage.setItem("isRound", isRound);
     }
    
 

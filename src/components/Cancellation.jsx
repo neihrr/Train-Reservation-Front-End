@@ -24,9 +24,6 @@ class Cancellation extends React.Component{
      
         await axios.get("http://localhost:3001/user/reservation/"+this.user.sub).then(res=>
         {const reservations = res.data;
-           
-
-            
             this.setState({user_reservations:reservations});
             console.log(this.state.user_reservations);
         })

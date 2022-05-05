@@ -26,7 +26,7 @@ class SelectCar extends React.Component{
                 <h1 className='context-car'>Choose Your Car</h1>
                 <br/>
                 <h3>{localStorage.getItem('departure')} to {localStorage.getItem('arrival')}</h3>
-                <Cars></Cars>
+                <Cars departure = {true}></Cars>
                 
             </div>
             <div className="brand-footer-car">@ 2022 RAIL-AWAY - All Rights reserved.</div>
