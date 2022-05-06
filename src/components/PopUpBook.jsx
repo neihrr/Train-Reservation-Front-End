@@ -19,7 +19,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
-    class PopUpBook extends React.Component{
+class PopUpBook extends React.Component{
       constructor(props){
           super(props);
           this.history = this.props.navigation;
@@ -118,12 +118,17 @@ import { unstable_renderSubtreeIntoContainer } from 'react-dom';
             console.log("TESTT");
 
             const res = await axios.post("http://localhost:3001/reservation", reservationCreateRequest)
-            .then(res => console.log(res))
-            .catch((err)=>{
-                console.log(err);
+            .then(res => {
+                console.log(res.data.success);
+                if(res.data.success==='false'){
+                    this.history("/PurchaseError");
+                }
 
-            });
-            console.log(res);
+            }
+                );
+
+            
+        
 
             localStorage.clear();
             localStorage.setItem("access_token", access_token);

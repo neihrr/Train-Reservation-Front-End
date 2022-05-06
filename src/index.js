@@ -13,6 +13,7 @@ import PurchaseSuccess from './components/PurchaseSuccess.jsx';
 import Cancellation from './components/Cancellation.jsx';
 import SelectCarRound from './components/SelectCarRound.jsx';
 import SelectSeatRound from './components/SelectSeatRound.jsx';
+import PurchaseUnsuccesful from './components/PurchaseUnsuccesful.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,6 +27,7 @@ ReactDOM.render(
           <Route path="/PopUp" element = {<PopUpBook/>}></Route>
           <Route path="/AdminPanel" element = {<AdminPanel/>}></Route>
           <Route path="/PurchaseSuccess" element = {<PurchaseSuccess/>}></Route>
+          <Route path="/PurchaseError" element = {<PurchaseUnsuccesful/>}></Route>
           <Route path="/Cancellation" element = {<Cancellation/>}></Route>
           <Route path="/" element={<App/>}></Route> 
       </Routes>
